@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="50dp"
                 android:paddingBottom="50dp"
-                android:text="@string/STR_NO_NOTE_CREATED"
+                android:text="@string/STR_NO_CATEGORY_CREATED"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/orange_light"

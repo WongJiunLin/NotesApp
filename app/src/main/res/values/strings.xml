@@ -16,6 +16,7 @@
     <string name="title_activity_manage_category_view_controller">ManageCategoryViewController</string>
     <string name="STR_NO_NOTE_CREATED">You have no note created yet.</string>
     <string name="STR_NO_CATEGORY_CREATED">You have no category created yet.</string>
+    <string name="STR_NO_CATEGORY_GO_SETTING">You have no category created yet. \n Please go to Settings to add</string>
     <string name="STR_DELETE_ALL_NOTES">Delete all notes</string>
     <string name="STR_SURE_TO_DELETE_CATEGORIES">Are you sure you want to delete all categories?</string>
     <string name="STR_SURE_TO_DELETE_NOTE">Are you sure you want to delete current note?</string>

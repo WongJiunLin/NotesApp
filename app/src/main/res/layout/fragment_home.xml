@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/dark_gray"
     tools:context=".controllers.HomeFragmentViewController">
 
 
     <RelativeLayout
+        android:id="@+id/rl_home_title_container"
         android:layout_margin="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:id="@+id/tv_home_title"
@@ -39,11 +40,13 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_recent_created_notes_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/rl_home_title_container">
         <ImageView
             android:id="@+id/iv_clock"
             android:layout_width="24dp"
@@ -63,13 +66,29 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_no_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/STR_NO_CATEGORY_GO_SETTING"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:visibility="gone"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes"
+        android:layout_below="@+id/ll_recent_created_notes_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="12dp"
         android:orientation="vertical"
         android:scrollbars="vertical" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -31,6 +31,8 @@ public class HomeFragmentViewController extends Fragment implements View.OnClick
 
     private NotesAdapter notesAdapter;
 
+    List<Category> categories;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,20 +52,25 @@ public class HomeFragmentViewController extends Fragment implements View.OnClick
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
 
-        List<Category> categories = categoryManager.getAllCategories(true);
+        categories = categoryManager.getAllCategories(true);
 
-        notesAdapter = new NotesAdapter(categories);
-        binding.rvNotes.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvNotes.setAdapter(notesAdapter);
+        if (!categories.isEmpty()) {
+            notesAdapter = new NotesAdapter(categories);
+            binding.rvNotes.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.rvNotes.setAdapter(notesAdapter);
+        } else {
+            binding.tvNoCategory.setVisibility(View.VISIBLE);
+        }
 
         binding.ivSettings.setOnClickListener(this);
+        binding.tvNoCategory.setOnClickListener(this);
 
         return binding.getRoot();
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.iv_settings) {
+        if (v.getId() == R.id.iv_settings || v.getId() == R.id.tv_no_category) {
             Intent intent = new Intent(GlobalVariables.getInstance().getMainActivity(), SettingsViewController.class);
             startActivity(intent);
         }
@@ -76,7 +83,17 @@ public class HomeFragmentViewController extends Fragment implements View.OnClick
     }
 
     private void reloadNotes() {
-        List<Category> categories = categoryManager.getAllCategories(true);
-        notesAdapter.updateCategories(categories);
+        GlobalVariables.getHandlerUI().post(new Runnable() {
+            @Override
+            public void run() {
+                if (categories.isEmpty()) {
+                    binding.tvNoCategory.setVisibility(View.VISIBLE);
+                    return;
+                }
+                List<Category> categories = categoryManager.getAllCategories(true);
+                notesAdapter.updateCategories(categories);
+                binding.tvNoCategory.setVisibility(View.GONE);
+            }
+        });
     }
 }

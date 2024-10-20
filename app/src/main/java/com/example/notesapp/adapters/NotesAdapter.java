@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.notesapp.R;
 import com.example.notesapp.controllers.EditNoteViewController;
+import com.example.notesapp.controllers.NewNoteViewController;
 import com.example.notesapp.databinding.ItemCategoryNoteBinding;
 import com.example.notesapp.databinding.ItemNoteBinding;
 import com.example.notesapp.models.Category;
@@ -90,6 +91,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.CategoryNote
         if (notesCount == 0) {
             holder.binding.tvNoNote.setVisibility(View.VISIBLE);
             holder.binding.llNoteList.addView(holder.binding.tvNoNote);
+            holder.binding.tvNoNote.setOnClickListener(v -> {
+                Intent intent = new Intent(holder.binding.getRoot().getContext(), NewNoteViewController.class);
+                holder.binding.getRoot().getContext().startActivity(intent);
+            });
         }
 
         for (int i =0; i < (isMorePressed ? notesCount : Math.min(2, notesCount)); i++)

@@ -1,5 +1,6 @@
 package com.example.notesapp.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.notesapp.R;
 import com.example.notesapp.adapters.CategoryAdapter;
 import com.example.notesapp.database.controllers.DatabaseController;
 import com.example.notesapp.database.managers.CategoryManager;
@@ -20,7 +22,7 @@ import com.example.notesapp.utils.GlobalVariables;
 
 import java.util.List;
 
-public class SummaryFragmentViewController extends Fragment {
+public class SummaryFragmentViewController extends Fragment implements View.OnClickListener {
 
     private static String tag = "SummaryFragmentViewController";
     private FragmentSummaryBinding binding;
@@ -28,6 +30,8 @@ public class SummaryFragmentViewController extends Fragment {
     private NoteManager noteManager;
     private CategoryManager categoryManager;
     private CategoryAdapter categoryAdapter;
+
+    List<Category> categories;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,17 +58,37 @@ public class SummaryFragmentViewController extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSummaryBinding.inflate(getLayoutInflater(), container, false);
 
-        List<Category> categories = categoryManager.getAllCategories(false);
+        // Setup click listeners
+        binding.tvNoCategory.setOnClickListener(this);
 
-        categoryAdapter = new CategoryAdapter(categories, noteManager);
-        binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvCategories.setAdapter(categoryAdapter);
+        categories = categoryManager.getAllCategories(false);
+        if (!categories.isEmpty()) {
+            categoryAdapter = new CategoryAdapter(categories, noteManager);
+            binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.rvCategories.setAdapter(categoryAdapter);
+            binding.tvNoCategory.setVisibility(View.GONE);
+        } else {
+            binding.tvNoCategory.setVisibility(View.VISIBLE);
+        }
 
         return binding.getRoot();
     }
 
     private void reloadCategories() {
-        List<Category> categories = categoryManager.getAllCategories(false);
-        categoryAdapter.updateCategories(categories);
+        categories = categoryManager.getAllCategories(false);
+        if (!categories.isEmpty()) {
+            categoryAdapter.updateCategories(categories);
+            binding.tvNoCategory.setVisibility(View.GONE);
+        } else {
+            binding.tvNoCategory.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tv_no_category) {
+            Intent intent = new Intent(getContext(), ManageCategoryViewController.class);
+            startActivity(intent);
+        }
     }
 }

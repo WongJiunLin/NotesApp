@@ -63,12 +63,17 @@ public abstract class AbstractNoteViewController extends AppCompatActivity imple
             hideShowCategoryOption();
             return;
         }
+        if (v.getId() == R.id.tv_no_category) {
+            navigateToCategoryCreation();
+            return;
+        }
         if (v.getId() == R.id.btn_positive) {
             onSaveOrUpdateNote();
             return;
         }
         if (v.getId() == R.id.btn_negative) {
             deleteNote();
+            return;
         }
     }
 
@@ -77,6 +82,7 @@ public abstract class AbstractNoteViewController extends AppCompatActivity imple
         binding.llChooseCategoryContainer.setOnClickListener(this);
         binding.btnPositive.setOnClickListener(this);
         binding.btnNegative.setOnClickListener(this);
+        binding.tvNoCategory.setOnClickListener(this);
     }
 
     protected void setupCategoryList(List<Category> categories) {
@@ -115,6 +121,11 @@ public abstract class AbstractNoteViewController extends AppCompatActivity imple
         selectedCategoryId = category.getCategoryId();
         if (reloadCategoryDropDown)
             hideShowCategoryOption();
+    }
+
+    private void navigateToCategoryCreation() {
+        Intent intent = new Intent(this, ManageCategoryViewController.class);
+        startActivity(intent);
     }
 
     private void hideShowCategoryOption() {

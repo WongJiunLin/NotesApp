@@ -107,7 +107,7 @@ public class CategoryDAO {
 
     @SuppressLint("Range")
     public List<Category> getAllCategories(NoteDAO noteDAO, boolean latestThreeNotes) {
-        List<Category> categorys = new ArrayList<Category>();
+        List<Category> categories = new ArrayList<Category>();
 
         try {
             Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
@@ -119,13 +119,13 @@ public class CategoryDAO {
                     List<Note> notes = noteDAO.getNotesByCategory(categoryId, latestThreeNotes);
 
                     Category category = new Category(categoryId, categoryName, categoryIcon, false, notes);
-                    categorys.add(category);
+                    categories.add(category);
                 } while (cursor.moveToNext());
             }
             cursor.close();
         } catch (Exception e) {
             Log.e(tag, "getAllCategories - Exception occurred: " + e.getMessage());
         }
-        return categorys;
+        return categories;
     }
 }
