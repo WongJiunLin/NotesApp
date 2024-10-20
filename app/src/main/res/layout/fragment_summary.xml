@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/dark_gray">
+
+
+    <RelativeLayout
+        android:layout_margin="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_summary_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/STR_SUMMARY"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="36sp"
+            android:fontFamily="sans-serif"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="6dp" />
+
+        <ImageView
+            android:id="@+id/iv_summary_icon"
+            android:layout_width="97dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="6dp"
+            android:src="@drawable/ic_summary_robot"
+            android:contentDescription="@string/STR_SUMMARY"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

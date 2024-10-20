@@ -1,0 +1,26 @@
+[
+  {
+    "menuId": 1,
+    "menuIcon": "ic_customer_service",
+    "menuName": "Online Customer",
+    "url": "https://www.google.com"
+  },
+  {
+    "menuId": 2,
+    "menuIcon": "ic_agreement",
+    "menuName": "User Agreement",
+    "url": "https://www.google.com"
+  },
+  {
+    "menuId": 3,
+    "menuIcon": "ic_shield",
+    "menuName": "Privacy Policy",
+    "url": "https://www.google.com"
+  },
+  {
+    "menuId": 4,
+    "menuIcon": "ic_info_light",
+    "menuName": "About Us",
+    "url": "https://www.google.com"
+  }
+]

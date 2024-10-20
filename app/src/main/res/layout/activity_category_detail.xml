@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray">
+
+    <LinearLayout
+        android:id="@+id/ll_category_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_back_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back"
+            android:layout_margin="12dp"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/STR_CATEGORY_DETAIL"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:layout_margin="6dp"/>
+
+        <ImageView
+            android:id="@+id/iv_category_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_food"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="12dp"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_category_detail_container"
+        android:background="@color/light_gray"/>
+
+    <TextView
+        android:id="@+id/tv_no_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/STR_NO_NOTE_CREATED"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="24dp"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_below="@+id/v_divider"
+        android:layout_above="@+id/ll_button_container"/>
+
+    <LinearLayout
+        android:id="@+id/ll_button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/btn_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/STR_DELETE_CURRENT_CATEGORY"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:padding="12dp"
+            android:layout_margin="24dp"
+            android:background="@drawable/rounded_corners_button_alert"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/rounded_corners_note"
+    android:layout_marginBottom="8dp"
+    android:id="@+id/rl_note_item">
+
+    <TextView
+        android:id="@+id/tv_note_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:text="Note Desc"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <ImageView
+        android:id="@+id/iv_note_redirection_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_chevron_right"
+        android:layout_alignParentEnd="true"
+        app:tint="@color/orange_light" />
+
+</RelativeLayout>
